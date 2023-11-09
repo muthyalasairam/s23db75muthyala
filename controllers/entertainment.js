@@ -19,3 +19,16 @@ res.send('NOT IMPLEMENTED: Entertainment delete DELETE ' + req.params.id);
 exports.entertainment_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: Entertainment update PUT' + req.params.id);
 };
+
+
+exports.entertainment_List = async function(req, res) {
+    try{
+    theEntertainment = await entertainment.find();
+    res.send(theEntertainment);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+    
