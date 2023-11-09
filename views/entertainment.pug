@@ -2,11 +2,12 @@ extends layout
 
 block content
   h1= title
-  - let results = [{Movies:"Tollywood", Genre: "Comedy", Budget:5000000}, {Movies:"Bollywood", Genre: "Horror", Budget:7000000},{Movies:"Kollywood", Genre: "Action", Budget:40000000}]
-    .container-fluid 
+  - let items = results
+    
+    .container-fluid
       .row
-        each entertain, index in results
-            .col-sm-2(onclick=`buy(${index})`)
+        each entertain, index in items
+             .col-sm-2(onclick=`buy(${index})`)
               p Movies: #{entertain.Movies}
               p Genre: #{entertain.Genre}
               p Budget: #{entertain.Budget}
