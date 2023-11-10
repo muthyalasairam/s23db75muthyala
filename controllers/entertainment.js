@@ -4,19 +4,12 @@ var Entertainment = require('../models/entertainment');
 exports.entertainment_list = function(req, res) {
 res.send('NOT IMPLEMENTED: Entertainment list');
 };
-// for a specific Costume.
-exports.entertainment_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: Entertainment detail: ' + req.params.id);
-};
 // Handle Costume create on POST
 // Handle Costume delete form on DELETE.
 exports.entertainment_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Entertainment delete DELETE ' + req.params.id);
 };
-// Handle Costume update form on PUT.
-exports.entertainment_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: Entertainment update PUT' + req.params.id);
-};
+
 var theEntertainments
 // List of all Costumes
 exports.entertainment_list = async function(req, res) {
@@ -67,3 +60,31 @@ exports.entertainment_create_post = async function(req, res) {
     }
     };
     
+    exports.entertainment_detail = async function(req, res) {
+        console.log("detail" + req.params.id)
+        try {
+        result = await Entertainment.findById( req.params.id)
+        res.send(result)
+        } catch (error) {
+        res.status(500)
+        res.send(`{"error": document for id ${req.params.id} not found`);
+        }
+        };
+        
+        exports.entertainment_update_put = async function(req, res) {
+            console.log(`update on id ${req.params.id} with body
+            ${JSON.stringify(req.body)}`)
+            try {
+            let toUpdate = await Entertainment.findById( req.params.id)
+            // Do updates of properties
+            if(req.body.Movies)
+            toUpdate.Movies = req.body.Movies;
+            if(req.body.Genre) toUpdate.Genre = req.body.Genre;
+            if(req.body.Budget) toUpdate.Budget = req.body.Budget;
+            let result = await toUpdate.save();
+            console.log("Sucess " + result)
+            res.send(result)
+            } catch (err) {
+            res.status(500)
+            res.send(`{"error": ${err}: Update for id ${req.params.id}
+            failed`);}};
