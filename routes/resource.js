@@ -16,6 +16,6 @@ router.put('/entertainment/:id', entertainment_controller.entertainment_update_p
 // GET request for one Costume.
 router.get('/entertainment/:id', entertainment_controller.entertainment_detail);
 // GET request for list of all Costume items.
-router.get('/entertainment', entertainment_controller.entertainment_List);
+router.get('/entertainment', entertainment_controller.entertainment_list);
 module.exports = router;
 

@@ -4,5 +4,5 @@ Movies: String,
 Genre: String,
 Budget: Number
 })
-module.exports = mongoose.model("entertainment",
+module.exports = mongoose.model("entertainments",
 entertainmentSchema)
