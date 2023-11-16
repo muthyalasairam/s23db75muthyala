@@ -9,5 +9,8 @@ router.get('/', entertainment_controlers.entertainment_view_all_Page);
 /* GET create update page */
 router.get('/update', entertainment_controlers.entertainment_update_Page);
 
+/* GET delete costume page */
+router.get('/delete', entertainment_controlers.entertainment_delete_Page);
+
 module.exports = router;
 
