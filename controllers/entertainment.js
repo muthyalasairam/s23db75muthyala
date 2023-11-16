@@ -91,38 +91,52 @@ exports.entertainment_update_put = async function (req, res) {
     }
 };
 
-exports.entertainment_delete = async function(req, res) {
-console.log("delete " + req.params.id)
-try {
-result = await Entertainment.findByIdAndDelete( req.params.id)
-console.log("Removed " + result)
-res.send(result)
-} catch (err) {
-res.status(500)
-res.send(`{"error": Error deleting ${err}}`);
-}
+exports.entertainment_delete = async function (req, res) {
+    console.log("delete " + req.params.id)
+    try {
+        result = await Entertainment.findByIdAndDelete(req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 };
-exports.entertainment_view_one_Page = async function(req, res) {
+exports.entertainment_view_one_Page = async function (req, res) {
     console.log("single view for id " + req.query.id)
-    try{
-    result = await Entertainment.findById( req.query.id)
-    res.render('entertainmentdetail', 
-   { title: 'Entertainment Detail', toShow: result });
+    try {
+        result = await Entertainment.findById(req.query.id)
+        res.render('entertainmentdetail',
+            { title: 'Entertainment Detail', toShow: result });
     }
-    catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
     }
-   };
-exports.entertainment_create_Page = function(req, res) {
+};
+
+exports.entertainment_create_Page = function (req, res) {
     console.log("create view")
-    try{
-    res.render('entertainmentcreate', { title: 'Entertainment Create'});
+    try {
+        res.render('entertainmentcreate', { title: 'Entertainment Create' });
     }
-    catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
     }
-    };
-    
+};
+
+// Handle building the view for updating a costume.
+// query provides the id
+exports.entertainment_update_Page = async function (req, res) {
+    console.log("update view for item " + req.query.id)
+    try {
+        let result = await Entertainment.findById(req.query.id)
+        res.render('entertainmentupdate', { title: 'Entertainment Update', toShow: result });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
 

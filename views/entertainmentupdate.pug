@@ -1,0 +1,42 @@
+extends layout
+block content
+  h1= title
+  - let entertainmentid = toShow._id
+  - let entertainmentmovies = toShow.Movies
+  - let entertainmentBudget = toShow.Budget
+  - let emtertainmentGenre = toShow.Genre
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{entertainmentid}
+
+  - let actionid = "/resource/entertainment/" + entertainmentid
+  form(id='EntertainmentForm', action= actionid, method="PUT")
+    div.form-group
+      label.entertainmentAttr(for='Movies') Movies
+      input#Movies(type='text', name='Movies', value= entertainmentmovies )
+    div.form-group
+      label.entertainmentAttr(for='Genre') Genre
+      input#Genre(type='text', name='Genre', value= emtertainmentGenre )
+    div.form-group
+      label.entertainmentAttr(for='Budget') Budget
+      input#Budget(type='number', name='Budget', value= entertainmentBudget )
+    input(type="submit")
+
+  script.
+    document.forms['EntertainmentForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show the user that the form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeeded");
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error);
+      });
+    });
