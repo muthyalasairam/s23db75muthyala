@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  form(id='EntertainmentForm', action="/resource/entertainment", method="POST")
+    div.form-group
+      label.entertainmentAttr(for='Movies') Movies   
+      input#Movies(type='text', name='Movies')
+    div.form-group
+      label.entertainmentAttr(for='Genre') Genre
+      input#Genre(type='text', name='Genre')
+    div.form-group
+      label.entertainmentAttr(for='Budget') Budget
+      input#Budget(type='number', name='Budget')
+    input(type="submit")
+  script.
+    document.forms['EntertainmentForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show the user that the form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed " + error )
+      });
+    });

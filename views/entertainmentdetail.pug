@@ -1,0 +1,20 @@
+extends layout
+block content
+ h1= title
+ - let entertainmentid = toShow._id
+ - let entertainmentmovies = toShow.Movies
+ - let entertainmentBudget = toShow.Budget
+ - let emtertainmentGenre = toShow.Genre
+ div
+ div.row
+ div(class='entertainmentAttr mr-3') Entertainment ID is:
+ div #{entertainmentid}
+ div.row
+ div(class='entertainmentAttr mr-3') Movie is:
+ div #{entertainmentmovies}
+ div.row
+ div(class='entertainmentAttr mr-3') Budget is:
+ div #{entertainmentBudget}
+ div.row
+ div(class='entertainmentAttr mr-3') Genre is:
+ div #{emtertainmentGenre}
