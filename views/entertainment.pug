@@ -4,15 +4,15 @@ block content
   h1= title
   - let items = results
     
-    .container-fluid
-      .row
-        each entertain, index in items
-             .col-sm-2(onclick=`buy(${index})`)
-              p Movies: #{entertain.Movies}
-              p Genre: #{entertain.Genre}
-              p Budget: #{entertain.Budget}
-
+  div(class="container-fluid")
+    div(class="row m-1")
+      each item in items
+        - let destination = `/entertainment/update?id=${item._id}`
+        div(class="row-sm-2 m-1") 
+          | Item #{item.Movies} (#{item.Genre}) is #{item.Budget}
+          button.btn.btn-primary.ml-1(onclick= `dispatch('${destination}')`) Update
+          
   script.
-    function buy(index) {
-      alert('You purchased item ' + (index+1));
+    function dispatch(path){
+      window.location.href = path;
     }
