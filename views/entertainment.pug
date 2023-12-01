@@ -6,11 +6,16 @@ block content
     
   div(class="container-fluid")
     div(class="row m-1")
+      a.btn.btn-success(href="/entertainment/create") Create Entertainment
       each item in items
         - let destination = `/entertainment/update?id=${item._id}`
+        - let destinationview = `/entertainment/detail?id=${item._id}`
+        - let destinationdelete = `/entertainment/delete?id=${item._id}`
         div(class="row-sm-2 m-1") 
           | Item #{item.Movies} (#{item.Genre}) is #{item.Budget}
           button.btn.btn-primary.ml-1(onclick= `dispatch('${destination}')`) Update
+          button.btn.btn-primary.ml-1(onclick= `dispatch('${destinationview}')`) View
+          button.btn.btn-primary.ml-1(onclick= `dispatch('${destinationdelete}')`) Delete
           
   script.
     function dispatch(path){
