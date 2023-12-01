@@ -10,14 +10,14 @@ const secured = (req, res, next) => {
     res.redirect("/login");
 }
 /* GET home page. */
-router.get('/detail', entertainment_controlers.entertainment_view_one_Page);
-router.get('/create', entertainment_controlers.entertainment_create_Page)
+router.get('/detail', secured , entertainment_controlers.entertainment_view_one_Page);
+router.get('/create', secured , entertainment_controlers.entertainment_create_Page)
 router.get('/', entertainment_controlers.entertainment_view_all_Page);
 /* GET create update page */
-router.get('/update',secured, entertainment_controlers.entertainment_update_Page);
+router.get('/update', secured , entertainment_controlers.entertainment_update_Page);
 
 /* GET delete costume page */
-router.get('/delete', entertainment_controlers.entertainment_delete_Page);
+router.get('/delete', secured , entertainment_controlers.entertainment_delete_Page);
 
 module.exports = router;
 

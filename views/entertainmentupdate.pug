@@ -17,7 +17,7 @@ block content
       input#Movies(type='text', name='Movies', value= entertainmentmovies, style='width: 100%; padding: 5px; margin-top: 5px;')
     div.form-group
       label.entertainmentAttr(for='Genre', style='font-weight: bold; color: #336699;') Genre
-      input#Genre(type='text', name='Genre', value= emtertainmentGenre, style='width: 100%; padding: 5px; margin-top: 5px;')
+      input#Genre(type='text', name='Genre', value= emtertainmentGenre, minlength = 10, maxlength = 100, style='width: 100%; padding: 5px; margin-top: 5px;')
     div.form-group
       label.entertainmentAttr(for='Budget', style='font-weight: bold; color: #336699;') Budget
       input#Budget(type='number', name='Budget', value= entertainmentBudget, min = 1000, max = 10000, style='width: 100%; padding: 5px; margin-top: 5px;')
